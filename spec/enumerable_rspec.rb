@@ -73,16 +73,30 @@ RSpec.describe Enumerable do
     letters = %w[a b c]
     numbers = [1, 2, 3, 4, 5]
     it 'Checks if string is converted to intagers' do
-      expect(chars.my_map{|str| str.to_i}).to eq(numbers)
+      expect(chars.my_map(&:to_i)).to eq(numbers)
     end
 
-    it 'Checks if all the numbers are doubled' do 
-      expect(numbers.my_map{|n| n*2}).to eq([2,4,6,8,10])
+    it 'Checks if all the numbers are doubled' do
+      expect(numbers.my_map { |n| n * 2 }).to eq([2, 4, 6, 8, 10])
     end
 
     it 'Checks if all letters are upcase' do
-      expect(letters.my_map{|string| string.upcase}).to eq(["A","B","C"])
+      expect(letters.my_map(&:upcase)).to eq(%w[A B C])
     end
   end
 
+  describe '#my_count' do
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    it 'Returns an Integer' do
+      expect(numbers.my_count { |n| n == 5 }).to be_an(Integer)
+    end
+
+    it 'Returns the correct count' do
+      expect(numbers.my_count(&:odd?)).to eq(5)
+    end
+
+    it 'Returns zero if no matches are found' do
+      expect(numbers.my_count { |e| e == 'x' }).to eq(0)
+    end
+  end
 end
