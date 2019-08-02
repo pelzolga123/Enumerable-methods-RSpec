@@ -67,4 +67,22 @@ RSpec.describe Enumerable do
       expect(chars.my_inject('') { |string, c| string + c }).to eq('abcde')
     end
   end
+
+  describe '#my_map' do
+    chars = %w[1 2 3 4 5]
+    letters = %w[a b c]
+    numbers = [1, 2, 3, 4, 5]
+    it 'Checks if string is converted to intagers' do
+      expect(chars.my_map{|str| str.to_i}).to eq(numbers)
+    end
+
+    it 'Checks if all the numbers are doubled' do 
+      expect(numbers.my_map{|n| n*2}).to eq([2,4,6,8,10])
+    end
+
+    it 'Checks if all letters are upcase' do
+      expect(letters.my_map{|string| string.upcase}).to eq(["A","B","C"])
+    end
+  end
+
 end
