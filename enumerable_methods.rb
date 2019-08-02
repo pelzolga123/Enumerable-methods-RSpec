@@ -2,35 +2,35 @@ module Enumerable
     def my_each
         i = 0
         while i < self.length
-          yield(self[i])   
-            i+=1   
-        end 
+          yield(self[i])
+            i+=1
+        end
         self
     end
 
     def my_each_with_index
         i = 0
         while i < self.length
-          yield(self[i], i)   
-            i+=1   
-        end 
+          yield(self[i], i)
+            i+=1
+        end
     end
 
     def my_select
         arr = []
         self.my_each{ |e|
         if yield(e)
-             arr.push(e) 
+             arr.push(e)
         end
         }
-       arr   
+       arr
     end
 
-    def my_all? 
+    def my_all?
         self.my_each{|e|
         if !yield e
             return false
-        end    
+        end
         }
         return true
     end
@@ -39,9 +39,9 @@ module Enumerable
         self.my_each{|e|
         if yield e
             return true
-        else 
+        else
             return false
-        end    
+        end
         }
     end
 
@@ -49,7 +49,7 @@ module Enumerable
         self.my_each{|e|
         if yield e
             return false
-        end    
+        end
         }
         return true
     end
@@ -57,31 +57,30 @@ module Enumerable
     def my_count
         i = 0
         self.my_each{
-            i+=1   
+            i+=1
     }
         return i
     end
 
     def my_map(proc=nil)
-        
+
         arr = []
-        if proc != nil 
+        if proc != nil
         self.my_each{ |e|
-         arr.push(proc.call e) 
+         arr.push(proc.call e)
         }
         else
         self.my_each{ |e|
-         arr.push(yield(e)) 
+         arr.push(yield(e))
         }
         end
-      arr 
+      arr
     end
 
-    def my_inject(value)
-        self.my_each{|e| 
+    def my_inject(value=0)
+        self.my_each{|e|
         value = yield(value, e)
     }
     value
-    end  
+    end
 end
-  

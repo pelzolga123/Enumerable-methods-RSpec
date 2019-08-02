@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../enumerable-methods.rb'
+require_relative '../enumerable_methods.rb'
 
 RSpec.describe Enumerable do
   describe '#my_each' do
@@ -38,18 +38,33 @@ RSpec.describe Enumerable do
   end
 
   describe '#my_all?' do
-  even_array = [2, 4]
-  it 'Returns true if the block never returns false or nil.' do
-    expect(even_array.my_all?(&:even?)).to be true
+    even_array = [2, 4]
+    it 'Returns true if the block never returns false or nil.' do
+      expect(even_array.my_all?(&:even?)).to be true
+    end
+
+    it 'Returns true if the array is empty.' do
+      expect([].my_all?(&:even?)).to be true
+    end
+
+    it 'Returns false when expression does not match all the elements' do
+      expect(even_array.my_all?(&:odd?)).to be false
+    end
   end
 
-  it 'Returns true if the array is empty.' do
-    expect([].my_all?(&:even?)).to be true
+  describe '#my_inject' do
+    numbers = [1, 2, 3, 4, 5]
+    chars = %w[a b c d e]
+    it 'Returns the sum of all number in the array' do
+      expect(numbers.my_inject { |sum, n| sum + n }).to eq(15)
+    end
+
+    it 'Returns the sum of all numbers given a starting value' do
+      expect(numbers.my_inject(10) { |sum, n| sum + n }).to eq(25)
+    end
+
+    it 'Returns the sum of all numbers given a starting value' do
+      expect(chars.my_inject('') { |string, c| string + c }).to eq('abcde')
+    end
   end
-
- it 'Returns false when expression does not match all the elements' do
-    expect(even_array.my_all?(&:odd?)).to be false
- end
-
-end
 end
