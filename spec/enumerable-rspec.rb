@@ -36,4 +36,20 @@ RSpec.describe Enumerable do
       expect(numbers.my_select { |e| e == 'x' }).to eq([])
     end
   end
+
+  describe '#my_all?' do
+  even_array = [2, 4]
+  it 'Returns true if the block never returns false or nil.' do
+    expect(even_array.my_all?(&:even?)).to be true
+  end
+
+  it 'Returns true if the array is empty.' do
+    expect([].my_all?(&:even?)).to be true
+  end
+
+ it 'Returns false when expression does not match all the elements' do
+    expect(even_array.my_all?(&:odd?)).to be false
+ end
+
+end
 end
