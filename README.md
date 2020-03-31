@@ -1,11 +1,11 @@
 <h1 align="center">RSpec Testing - Enumerable Module 👋</h1>
 
 ## About The Project
-Apply RSpec testing to the Enumerable module project. Introduction to TDD (Test Driven Development) and the RSpec testing framework.This project was completed as part of the [Microverse](https://www.microverse.org/) curriculum.
+Apply RSpec testing to the Enumerable module project. Introduction to TDD (Test Driven Development) and the RSpec testing framework. This project was completed as part of the [Microverse](https://www.microverse.org/) curriculum.
 
 ## Built With
 * Ruby
-* RSpec
+* RSpec 
 
 ## Development
 
